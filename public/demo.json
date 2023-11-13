@@ -1,0 +1,21 @@
+{
+    "India": {
+        "solar": [
+            "CHANDRAPURA"
+        ],
+        "wind": [
+            "CHITRADURGA"
+        ]
+    },
+    "Indonesia": {
+        "wind": [
+            "BENGALURU"
+        ],
+        "solar": [
+            "RAMNAGAR"
+        ],
+        "battery":[
+            "Sirsi"
+        ]
+    }
+}

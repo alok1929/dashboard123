@@ -1,0 +1,103 @@
+{
+    "status":"success",
+    "data":[
+        {
+            "isActive":"true",
+            "region":"India",
+            "technology":"wind",
+            "plant":"chitradurga",
+            "cod":"Aug-14",
+            "capacityInMW":20.0,
+            "contractStartDate":"01-04-2022",
+            "contractEndDate":"31-03-2023",
+            "SCADA":"GE",
+            "warrantyPeriodForScada":"",
+            "noOfTurbines":10,
+            "capacityOfWindTurines":"1.4",
+            "contractName":"Renewable Power Private Limited",
+            "O&MContractCurrency(LCY)":"INR",
+            "monthlyFixedO&MRateInContract(LCY)":20000,
+            "escalation":5,
+            "escalationFrequency":"Every Year",
+            "yearlyFixedO&MFee(LCY)":"25000",
+            "remarkFixedO&MFee":"Monthly Fixed rate / MW",
+            "remarkVariableO&MFee":"Performance Availability Shigavv once paid to related to EPC contract",
+            "turbineAvailabilityGurantee(HWS)":97,
+            "turbineAvailabilityGurantee(LWS)":97,
+            "gridAvailabilityGurantee(HWS)":95,
+            "gridAvailabilityGurantee(LWS)":95,
+            "contract":"O&M Machine Maintenance",
+            "PDLD":"Completed",
+            "PCVT":"Completed",
+            "NT":"NA",
+            "updateHistory":[
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T03:45:23",
+                    "description":"escalation corrected from 6 to 5",
+                    "comment":"Correcting as per contract"
+                },
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T04:45:23",
+                    "description":"contract corrected from O&M Machine to O&M Machine Maintenance",
+                    "comment":"Correcting as per contract"
+                }
+
+            ]
+
+
+
+        },
+        {
+            "isActive":"false",
+            "region":"India",
+            "technology":"wind",
+            "plant":"Shiggav",
+            "cod":"Aug-14",
+            "capacityInMW":20.0,
+            "contractStartDate":"01-04-2022",
+            "contractEndDate":"31-03-2023",
+            "SCADA":"GE",
+            "warrantyPeriodForScada":"",
+            "noOfTurbines":10,
+            "capacityOfWindTurines":"1.4",
+            "contractName":"Renewable Power Private Limited",
+            "O&MContractCurrency(LCY)":"INR",
+            "monthlyFixedO&MRateInContract(LCY)":20000,
+            "escalation":5,
+            "escalationFrequency":"Every Year",
+            "yearlyFixedO&MFee(LCY)":"25000",
+            "remarkFixedO&MFee":"Monthly Fixed rate / MW",
+            "remarkVariableO&MFee":"Performance Availability Shigavv once paid to related to EPC contract",
+            "turbineAvailabilityGurantee(HWS)":97,
+            "turbineAvailabilityGurantee(LWS)":97,
+            "gridAvailabilityGurantee(HWS)":95,
+            "gridAvailabilityGurantee(LWS)":95,
+            "contract":"O&M Machine Maintenance",
+            "PDLD":"Completed",
+            "PCVT":"Completed",
+            "NT":"NA",
+            "updateHistory":[
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T03:45:23",
+                    "description":"escalation corrected from 6 to 5",
+                    "comment":"Correcting as per contract"
+                },
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T04:45:23",
+                    "description":"contract corrected from O&M Machine to O&M Machine Maintenance",
+                    "comment":"Correcting as per contract"
+                }
+
+            ]
+
+
+
+        }
+ 
+
+    ]
+}
