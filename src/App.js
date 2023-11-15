@@ -16,7 +16,9 @@ const RegionDropdownComponent = () => {
         setRegionsData(response.data);
         // Extract region names from the keys
         const regionNames = Object.keys(response.data);
+        //gets you only the region names from demo.json
         setRegions(regionNames);
+        
       } catch (error) {
         console.error('Error fetching region data:', error);
       }
@@ -29,6 +31,7 @@ const RegionDropdownComponent = () => {
     try {
       const response = await axios.get('/search.json');
       let dataForSelectedRegion = response.data.data;
+      //assumes recieved data has nested format, thats why data.data
   
       if (selectedRegion) {
         dataForSelectedRegion = dataForSelectedRegion.filter(
@@ -55,13 +58,7 @@ const RegionDropdownComponent = () => {
   };
   
 
-  useEffect(() => {
-    if (selectedRegion || selectedTechnology || selectedPlant) {
-      handleSearch();
-    } else {
-      setDetailedData(null); // Reset detailedData if no filters are selected
-    }
-  }, [selectedRegion, selectedTechnology, selectedPlant]);
+
 
   return (
     <div>
@@ -118,24 +115,37 @@ const RegionDropdownComponent = () => {
       <button onClick={handleSearch}>Search</button>
 
       {selectedRegion && (
-        <div>
-          <h2>Data for {selectedRegion}:</h2>
-          {Array.isArray(detailedData) ? (
-            detailedData.length > 0 ? (
-              <ul>
-                {detailedData.map((item, index) => (
-                  <li key={index}>
-                    {JSON.stringify(item, null, 2)}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No data available for the selected filters</p>
-            )
-          ) : (
-            <p>Loading data...</p>
-          )}
-        </div>
+      <div>
+      <h2>Data for {selectedRegion}:</h2>
+      {Array.isArray(detailedData) ? (
+        detailedData.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(detailedData[0]).map(([key, value]) => (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>{typeof value === 'object' ? JSON.stringify(value, null, 2) : value}</td>
+                 {/*In the value key pair, if the value is of object type, just stringify it */}
+
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No data available for the selected filters</p>
+        )
+      ) : (
+        <p>Loading data...</p>
+      )}
+    </div>
+    
+    
       )}
     </div>
   );
