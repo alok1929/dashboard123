@@ -115,22 +115,22 @@ const RegionDropdownComponent = () => {
       <button onClick={handleSearch}>Search</button>
 
       {selectedRegion && (
-      <div>
-      <h2>Data for {selectedRegion}:</h2>
+      <div className='grid-cols-2'>
+      <h2 className='col-span-2 mb-4'>Data for {selectedRegion}:</h2>
       {Array.isArray(detailedData) ? (
         detailedData.length > 0 ? (
-          <table>
+          <table className='table-auto col-span-2'>
             <thead>
               <tr>
-                <th>Property</th>
-                <th>Value</th>
+                <th className='border px-4 py-2' >Property</th>
+                <th className='border px-4 py-2'>Value</th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(detailedData[0]).map(([key, value]) => (
                 <tr key={key}>
-                  <td>{key}</td>
-                  <td>{typeof value === 'object' ? JSON.stringify(value, null, 2) : value}</td>
+                  <td className='border px-4 py-2'>{key}</td>
+                  <td className='border px-4 py-2'>{typeof value === 'object' ? JSON.stringify(value, null, 2) : value}</td>
                  {/*In the value key pair, if the value is of object type, just stringify it */}
 
                 </tr>
