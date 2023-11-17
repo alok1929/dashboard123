@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import DataGridComponent from './dataGridComp';
+import UpdateGridComponent from './updateGridComp';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +17,7 @@ const RegionDropdownComponent = () => {
   const [detailedData, setDetailedData] = useState(null);
   const [detailedActive, setDetailedActive] = useState(null);
   const [modalIsOpen, setModalOpen] = useState(false);
+  const [updatemodalIsOpen, updatesetModalOpen] = useState(false);
   const [isSearchPerformed, setSearchPerformed] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
 
@@ -25,6 +28,16 @@ const RegionDropdownComponent = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+
+  const openUpdateModal = () => {
+    updatesetModalOpen(true);
+  };
+
+  const closeUpdateModal = () => {
+    updatesetModalOpen(false);
+  };
+
 
   useEffect(() => {
     const fetchRegions = async () => {
@@ -44,6 +57,7 @@ const RegionDropdownComponent = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get('/search.json');
+      console.log("got search.json")
       let dataForSelectedRegion = response.data.data;
 
       if (selectedRegion) {
@@ -73,9 +87,7 @@ const RegionDropdownComponent = () => {
         );
         setContractName(contractNameItem ? contractNameItem.contractName : '');
 
-        // Set flags to indicate search has been performed and to show the grid
-        setSearchPerformed(true);
-        setShowGrid(true);
+
 
       }
     } catch (error) {
@@ -152,102 +164,93 @@ const RegionDropdownComponent = () => {
         </button>
       </div>
 
-        {isSearchPerformed === true && showGrid === true && (
-          <div className='px-4 m-4 bg-slate-300 rounded-2xl'>
-            <div className='flex justify-center space-x-96'>
-              {Array.isArray(detailedData) ? (
-                detailedData.length > 0 ? (
-                  <div className="">
-                    {detailedData.map((item, index) => (
-                      <div key={index} className="grid grid-cols-6 grid-rows-4">
-                        {Object.entries(item)
-                          .filter(([key, value]) => value !== 'false' && key !== 'technology' && key !== 'region' && key !== 'plant' && key !== 'contractName' && key !== 'isActive')
-                          .map(([key, value], innerIndex) => (
-                            <div key={innerIndex} className="bg-gray-200 w-11/12 h-20 inline-block m-4 py-3 rounded-lg">
-                              <div className="flex-col px-2" style={{ overflow: 'hidden', maxWidth: '200px', maxHeight: '400px' }}>
-                                <div>
-                                  <div className="flex flex-col w-4/5">
-                                    <div className=' text-sm px-2'>{key}:</div>
-                                    <div>
-                                      <span className="m-2 text-lg" style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                        {typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                      </div>
-                    ))}
-                    <div className='py-3 px-4'>
-                      {isActive === 'true' ? (
-                        <button className='bg-green-500 p-6 text-white px-6 py-1 rounded-xl'>
-                          Active
-                        </button>
-                      ) : null}
-                    </div>
-                    <div>
-                      {contractName && (
-                        <h2 className='py-4 text-2xl font-semibold'>{contractName}</h2>
-                      )}
-                    </div>
-                    <div className='flex '>
-                      <div className='py-3 px-4'>
-                        {showGrid && (
-                          <button className='bg-green-800 p-6 text-white px-3 py-1 rounded-xl'>
-                            Update
-                          </button>
-                        )}
-                      </div>
-                      <div className='py-3 px-4'>
-                        <button
-                          className='bg-yellow-600 p-6 text-white px-4 py-1 rounded-xl'
-                          onClick={openModal}
-                        >
-                          Edit
-                        </button>
 
-                        <Modal
-                          isOpen={modalIsOpen}
-                          onRequestClose={closeModal}
-                          contentLabel='Edit Modal'
-                        >
-                          <div>
-                            <div className='flex justify-end'>
-                              <button
-                                type='button'
-                                className='text-2xl font-bold bg-slate-400 rounded-3xl p-2 '
-                                onClick={closeModal}
-                              >
-                                X
-                              </button>
-                            </div>
-                            <div>
-                              <h2 className='flex justify-center font-bold text-2xl'>
-                                Edit {contractName}
-                              </h2>
+      <div className='px-4 m-4 bg-slate-300 rounded-2xl'>
 
-                              {/* Include your modal content here */}
-                            </div>
-                          </div>
-                        </Modal>
-                      </div>
-                    </div>
+
+        <div className='flex justify-center space-x-96'>
+          <div className='py-3 px-4'>
+            {isActive === 'true' ? (
+              <button className='bg-green-500 p-6 text-white px-6 py-1 rounded-xl'>
+                Active
+              </button>
+            ) : null}
+          </div>
+          <div>
+            {contractName && (
+              <h2 className='py-4 text-xl font-semibold'>{contractName}</h2>
+            )}
+          </div>
+          <div className='flex '>
+            
+            <div className='py-3 px-4'>
+               <button className='bg-green-800 p-6 text-white px-3 py-1 rounded-xl ' onClick={openUpdateModal}>
+                Update
+                <Modal
+                  isOpen={updatemodalIsOpen}
+                  onRequestClose={closeUpdateModal}
+                  contentLabel='Update Model'
+                >
+                </Modal>
+              </button>
+             
+            </div>
+            <div className='py-3 px-4'>
+              <button
+                className='bg-yellow-600 p-6 text-white px-4 py-1 rounded-xl'
+                onClick={openModal}
+              >
+                Edit
+              </button>
+              <UpdateGridComponent
+                isOpen={updatemodalIsOpen}
+                onClose={closeUpdateModal}
+              />
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel='Edit Modal'
+              >
+                <div>
+                  <div className='flex justify-end'>
+                    <button
+                      type='button'
+                      className='text-2xl font-bold bg-slate-400 rounded-3xl p-2 '
+                      onClick={closeModal}
+                    >
+                      X
+                    </button>
                   </div>
-                ) : (
-                  <p>No data available for the selected filters</p>
-                )
-              ) : (
-                <p className='flex flex-col spin-container'>
-                  <button className='animate-spin' disabled>
-                    <svg path="rolling.svg"></svg>
-                  </button>
-                </p>
-              )}
+                  <div>
+                    <h2 className='flex justify-center font-bold text-2xl mb-3'>
+                      Edit {contractName}
+                    </h2>
+                    {/* this is the grid component for the edit page*/}
+                    <DataGridComponent detailedData={detailedData} />
+                    <div className='px-5 flex'>
+                      <div className='w-3/4'>
+                        <textarea className='w-5/6 h-28 rounded-lg px-2 py-2 bg-slate-200' defaultValue="Enter user comment"></textarea>
+
+                      </div>
+                      <div className='px-4 py-6'>
+                        <button
+                          className='bg-yellow-600 text-white px-10 py-2 rounded-xl'
+                          onClick={closeModal}
+                        > Edit</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </Modal>
             </div>
           </div>
-        )}
+
+        </div>
+        {/* this is the grid for the main page */}
+        <DataGridComponent detailedData={detailedData} />
+
+      </div>
 
     </div>
   )
