@@ -62,7 +62,7 @@
             "warrantyPeriodForScada":"",
             "noOfTurbines":10,
             "capacityOfWindTurines":"1.4",
-            "contractName":"Renewable Power Private Limited",
+            "contractName":"Renewable EPL",
             "O&MContractCurrency(LCY)":"INR",
             "monthlyFixedO&MRateInContract(LCY)":20000,
             "escalation":5,

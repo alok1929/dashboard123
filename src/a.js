@@ -1,105 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const TestFetchComponent = () => {
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [childNodes, setChildNodes] = useState({});
-  const [selectedNodeType, setSelectedNodeType] = useState(null);
-  const [selectedNode, setSelectedNode] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/demo.json');
-        const keys = Object.keys(response.data);
-        setCountries(keys);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (selectedCountry) {
-      // Directly use axios.get here
-      axios.get('/demo.json')
-        .then(response => {
-          setChildNodes(response.data[selectedCountry]);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    }
-  }, [selectedCountry]);
-
-  return (
-    <div>
-      <div>
-        <label htmlFor="countries">Select a Country:</label>
-        <select
-          id="countries"
-          onChange={(e) => {
-            setSelectedCountry(e.target.value);
-            setSelectedNodeType(null); // Reset selectedNodeType when a new country is selected
-            setSelectedNode(null); // Reset selectedNode when a new country is selected
-          }}
-        >
-          <option value="">Select</option>
-          {countries.map((country) => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {selectedCountry && (
-        <div>
-          {Object.keys(childNodes).length > 0 ? (
-            <div>
-              <label htmlFor="nodeTypes">Select a Node Type:</label>
-              <select
-                id="nodeTypes"
-                onChange={(e) => {
-                  setSelectedNodeType(e.target.value);
-                  setSelectedNode(null); // Reset selectedNode when a new node type is selected
-                }}
-              >
-                <option value="">Select</option>
-                {Object.keys(childNodes).map((nodeType) => (
-                  <option key={nodeType} value={nodeType}>
-                    {nodeType}
-                  </option>
-                ))}
-              </select>
-            </div>
-          ) : (
-            <p>No child nodes available for {selectedCountry}</p>
-          )}
-
-          {selectedNodeType && (
-            <div>
-              <label htmlFor="nodes">Select a Node:</label>
-              <select
-                id="nodes"
-                onChange={(e) => setSelectedNode(e.target.value)}
-              >
-                <option value="">Select</option>
-                {childNodes[selectedNodeType].map((node) => (
-                  <option key={node} value={node}>
-                    {node}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-        </div>
-      )}
+const searchu = () =>
+  {Array.isArray(detailedData) ? (
+    detailedData.length > 0 ? (
+      <div className="">
+        {detailedData.map((item, index) => (
+          <div key={index} className="grid grid-cols-6 grid-rows-4">
+            {Object.entries(item)
+              .filter(([key, value]) => value !== 'false' && key !== 'technology' && key !== 'region' && key !== 'plant' && key !== 'contractName' && key !== 'isActive')
+              .map(([key, value], innerIndex) => (
+                <div key={innerIndex} className="bg-gray-200 w-11/12 h-20 inline-block  m-4 py-3 rounded-lg">
+                  <div className="flex-col px-2" style={{ overflow: 'hidden', maxWidth: '200px', maxHeight: '400px' }}>
+                    <div>
+                      <div className="flex flex-col w-4/5">
+                        <div className=' text-sm px-2'>{key}:</div>
+                        <div>
+                          <span className="m-2 text-lg" style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        ))}
     </div>
-  );
-};
-
-export default TestFetchComponent;
+  ) : (
+    <p>No data available for the selected filters</p>
+  )
+) : (
+  <p className='flex flex-col spin-container'>
+    <button className='animate-spin' disabled>
+      <svg path="rolling.svg"></svg>
+    </button>
+  </p>
+)}

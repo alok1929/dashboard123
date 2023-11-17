@@ -40,4 +40,19 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <style>
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .spin-container {
+      width: 100px;
+      height: 100px;
+      animation: spin 2s linear infinite; /* Apply the spin animation with a duration of 2 seconds */
+    }    
+  </style>
 </html>
