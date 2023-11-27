@@ -1,0 +1,6 @@
+  <div key={historyIndex}>
+                        <p><strong>user:</strong> {historyItem.user}</p>
+                        <p><strong>timestamp:</strong> {historyItem.timestamp}</p>
+                        <p><strong>description:</strong> {historyItem.description}</p>
+                        <p><strong>comment:</strong> {historyItem.comment}</p>
+                      </div>

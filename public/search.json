@@ -6,7 +6,7 @@
             "region":"India",
             "technology":"wind",
             "plant":"chitradurga",
-            "cod":"Aug-14",
+            "COD":"Aug-14",
             "capacityInMW":20.0,
             "contractStartDate":"01-04-2022",
             "contractEndDate":"31-03-2023",
@@ -40,9 +40,10 @@
                 {
                     "user":"Ravi NM",
                     "timestamp":"2023-04-01T04:45:23",
-                    "description":"contract corrected from O&M Machine to O&M Machine Maintenance",
+                    "description":"contract updated from O&M Machine to O&M Machine Maintenance",
                     "comment":"Correcting as per contract"
                 }
+               
 
             ]
 
@@ -54,7 +55,7 @@
             "region":"India",
             "technology":"wind",
             "plant":"Shiggav",
-            "cod":"Aug-14",
+            "COD":"Aug-14",
             "capacityInMW":20.0,
             "contractStartDate":"01-04-2022",
             "contractEndDate":"31-03-2023",
@@ -69,7 +70,7 @@
             "escalationFrequency":"Every Year",
             "yearlyFixedO&MFee(LCY)":"25000",
             "remarkFixedO&MFee":"Monthly Fixed rate / MW",
-            "remarkVariableO&MFee":"Performance Availability Shigavv once paid to related to EPC contract",
+            "remarkVariableO&MFee":"Performance Availability Shigavv once paid to related to EPC contractPerformance Availability Shigavv once paid to related to EPC contractPerformance Availability Shigavv once paid to related to EPC contractPerformance Availability Shigavv once paid to related to EPC contract",
             "turbineAvailabilityGurantee(HWS)":97,
             "turbineAvailabilityGurantee(LWS)":97,
             "gridAvailabilityGurantee(HWS)":95,
@@ -82,7 +83,19 @@
                 {
                     "user":"Ravi NM",
                     "timestamp":"2023-04-01T03:45:23",
-                    "description":"escalation corrected from 6 to 5",
+                    "description":"escalation created from 6 to 5",
+                    "comment":"Correcting as per contractCorrecting as per contractCorrecting as per contract"
+                },
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T04:15:23",
+                    "description":"contract corrected from O&M Machine to O&M Machine Maintenance",
+                    "comment":"Correcting as per contract"
+                },
+                {
+                    "user":"Ravi NM",
+                    "timestamp":"2023-04-01T04:20:23",
+                    "description":"contract updated from O&M Machine to O&M Machine Maintenance",
                     "comment":"Correcting as per contract"
                 },
                 {
@@ -91,6 +104,7 @@
                     "description":"contract corrected from O&M Machine to O&M Machine Maintenance",
                     "comment":"Correcting as per contract"
                 }
+               
 
             ]
 

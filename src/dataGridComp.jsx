@@ -1,4 +1,6 @@
 import React from 'react';
+import aliasNames from './aliasNames.json';
+
 
 const DataGridComponent = ({ detailedData }) => {
   return (
@@ -7,26 +9,26 @@ const DataGridComponent = ({ detailedData }) => {
         detailedData.length > 0 ? (
           <div className="">
             {detailedData.map((item, index) => (
-              <div key={index} className="grid grid-cols-6 grid-rows-4">
+              <div key={index} className="grid grid-cols-4 grid-rows-4">
                 {Object.entries(item)
-                  .filter(([key, value]) => value !== 'false' &&
+                  .filter(([key, value]) =>
+                    value !== 'false' &&
                     key !== 'technology' &&
                     key !== 'region' &&
                     key !== 'plant' &&
                     key !== 'contractName' &&
                     key !== 'isActive' &&
-                    key !==  'updateHistory'
+                    key !== 'updateHistory'
                   )
                   .map(([key, value], innerIndex) => (
-                    <div key={innerIndex} className="bg-gray-200 w-11/12 h-20 inline-block m-4 py-3 rounded-lg">
-                      <div className="flex-col px-2" style={{ overflow: 'hidden', maxWidth: '200px', maxHeight: '400px' }}>
+                    <div key={innerIndex} className="bg-gray-200 w-11/12 h-24  inline-block m-4 py-2 rounded-lg">
+                      <div className="flex-col px-2">
                         <div>
                           <div className="flex flex-col w-4/5">
-                            <div className=' text-sm px-2'>{key}:</div>
+                            <div className=' text-sm  font-bold px-2'>{aliasNames[key]|| key}:</div>
                             <div>
-                              <span className="m-2 text-lg" style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              <span className="p-2 text-md" style={{ wordBreak: 'break-all', overflowWrap: 'break-word', overflow: 'scroll' }}>
                                 {typeof value === 'object' ? JSON.stringify(value, null, 2) : value}
-
                               </span>
                             </div>
                           </div>
@@ -36,17 +38,21 @@ const DataGridComponent = ({ detailedData }) => {
                   ))}
               </div>
             ))}
-
+            
+           
+            
           </div>
         ) : (
+          
           <p>No data available for the selected filters</p>
         )
       ) : (
-        <p className='flex flex-col ping-container'>
-          loading
-        </p>
-      )
-      }
+        <div>
+          <p className='text-xl font-mono flex justify-center mb-4 py-4 animate-bounce   '>
+            Loading
+          </p>
+        </div>
+      )}
     </div>
   );
 };
